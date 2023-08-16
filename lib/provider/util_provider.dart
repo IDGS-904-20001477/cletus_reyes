@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
-class UtilProvider extends ChangeNotifier{
+class UtilProvider extends ChangeNotifier {
   static final UtilProvider rtp = UtilProvider._();
   UtilProvider._();
-  
-final storage = const FlutterSecureStorage();
 
-  Future responsehttp({required String urlBase}) async{
+  final storage = const FlutterSecureStorage();
+
+  Future responsehttp({required String urlBase}) async {
     var response = await http.get(Uri.parse(urlBase));
     return response;
   }

@@ -1,5 +1,6 @@
 import 'package:cletus_reyes/provider/products_provider.dart';
 import 'package:cletus_reyes/routes/app_routes.dart';
+import 'package:cletus_reyes/themes/app_themes.dart';
 import 'package:cletus_reyes/util/util.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ProductsProvider(),)
+        ChangeNotifierProvider(
+          create: (context) => ProductsProvider(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
