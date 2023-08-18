@@ -18,57 +18,51 @@ class ProductCard extends StatelessWidget {
             Radius.circular(10),
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            /*FadeInImage.assetNetwork(
-              fit: BoxFit.cover,
-              placeholder: 'loading.gif',
-              image: product['filePath'],
-            ),*/
-            Image.network(
-              product['filePath'],
-              fit: BoxFit.cover,
-              height: 120,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Text(
-              product['name'],
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ProductDetailScreen(
+                        product: product,
+                      )),
+            );
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              /*FadeInImage.assetNetwork(
+                fit: BoxFit.cover,
+                placeholder: 'loading.gif',
+                image: product['filePath'],
+              ),*/
+              Image.network(
+                product['filePath'],
+                fit: BoxFit.cover,
+                height: 90,
               ),
-            ),
-            const SizedBox(
-              height: 6,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ProductDetailScreen(
-                              product: product,
-                            )),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.zero),
-                  ),
-                  backgroundColor: AppThemes.primary,
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                product['name'],
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
                 ),
-                child: const Text('Ver Más'))
-            /*Text(
-              product['category']['name'],
-              style: const TextStyle(
-                color: Colors.black54,
               ),
-            ),*/
-          ],
+              const SizedBox(
+                height: 6,
+              ),
+              Text(
+                product['category']['name'],
+                style: const TextStyle(
+                  color: Colors.black54,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

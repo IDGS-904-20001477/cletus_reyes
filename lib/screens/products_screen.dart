@@ -1,5 +1,6 @@
 import 'package:cletus_reyes/services/product_service.dart';
 import 'package:cletus_reyes/themes/app_themes.dart';
+import 'package:cletus_reyes/util/api_util.dart';
 import 'package:cletus_reyes/widgets/drawer_widget.dart';
 import 'package:cletus_reyes/widgets/product_list_widget.dart';
 import 'package:cletus_reyes/widgets/widget_export.dart';
@@ -20,7 +21,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: Colors.black87,
+              backgroundColor: AppThemes.primary,
               expandedHeight: 260,
               floating: false,
               pinned: true,
@@ -39,8 +40,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 ),
                 background: const FadeInImage(
                   fit: BoxFit.cover,
-                  placeholder: AssetImage('bg-products-header.jpg'),
-                  image: AssetImage('bg-products-header.jpg'),
+                  placeholder: AssetImage('assets/bg-products-header.jpg'),
+                  image: AssetImage('assets/bg-products-header.jpg'),
                 ),
               ),
             ),
@@ -52,6 +53,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   delegate: SliverChildListDelegate(
                     [
                       ...products!
+                          .map((product) => {
+                                ...product,
+                                'filePath': product['filePath'].replaceAll(
+                                    'https://localhost:7088', 'http://$DOMAIN')
+                              })
                           .map((product) => ProductCard(product: product))
                     ],
                   ),
