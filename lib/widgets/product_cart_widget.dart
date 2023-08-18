@@ -30,7 +30,7 @@ class ProductCard extends StatelessWidget {
             Image.network(
               product['filePath'],
               fit: BoxFit.cover,
-              height: 120,
+              height: 100,
             ),
             const SizedBox(
               height: 15,

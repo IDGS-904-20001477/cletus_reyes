@@ -1,1 +1,1 @@
-const API_URL = 'http://localhost:5069/api';
+const API_URL = 'https://localhost:7088/api';
