@@ -11,7 +11,7 @@ const token =
 
 Future<dynamic> getProducts() async {
   try {
-    var token = await getToken();
+    var token = (await getUser())['jwtToken'];
     final response = await http.get(Uri.parse("$API_URL/Product"), headers: {
       'Authorization': 'Bearer $token',
       'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ Future<dynamic> getProducts() async {
 Future<dynamic> deleteProduct(id) async {
   try {
     var url = "$API_URL/Product/$id";
-    var token = await getToken();
+    var token = (await getUser())['jwtToken'];
 
     final response = await http.delete(Uri.parse(url), headers: {
       'Authorization': 'Bearer $token',

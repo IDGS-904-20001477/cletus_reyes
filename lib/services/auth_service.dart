@@ -1,14 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 const storage = FlutterSecureStorage();
 
-Future<dynamic> getToken() async {
+Future<dynamic> getUser() async {
   Map<String, String> allValues = await storage.readAll();
-  return allValues['token'] ?? '';
+  return jsonDecode(allValues['user'] ?? '{}') as Map;
 }
 
-Future saveToken(String token) async {
-  await storage.write(key: 'token', value: token);
+Future saveUser(String userAuth) async {
+  await storage.write(key: 'user', value: userAuth);
 }
 
 Future clearSession() async {

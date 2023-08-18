@@ -44,7 +44,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               decoration: BoxDecoration(
                   color: AppThemes.primary,
                   image: const DecorationImage(
-                      image: AssetImage('logo_white.png'),
+                      image: AssetImage('assets/logo_white.png'),
                       fit: BoxFit.contain)),
               child: const Align(
                 alignment: Alignment.bottomRight,

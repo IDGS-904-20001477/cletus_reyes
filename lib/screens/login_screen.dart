@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(50.0),
+        padding: const EdgeInsets.all(45.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 labelText: 'Email',
               ),
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 14.0),
             TextField(
               controller: _passwordController,
               obscureText: true,
@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   focusColor: AppThemes.primary,
                   hoverColor: AppThemes.primary),
             ),
-            const SizedBox(height: 25.0),
+            const SizedBox(height: 22.0),
             if (errorMessage != '')
               Text(
                 errorMessage,
@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   String email = _emailController.text;
                   String password = _passwordController.text;
                   var user = await postLogin(email: email, password: password);
-                  saveToken(user['jwtToken']);
+                  saveUser(user);
                   //saveToken(user.)
                   Navigator.pushNamed(context, '/products');
                 } catch (e) {
@@ -100,7 +100,7 @@ Future postLogin({required String email, required String password}) async {
     body: json.encode({'email': email, 'password': password}),
   );
   if (res.statusCode >= 200 && res.statusCode < 300) {
-    return jsonDecode(res.body) as Map;
+    return res.body;
   } else {
     throw res.body;
   }
